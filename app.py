@@ -99,7 +99,7 @@ if tab_name == 'Prepare datset':
                 
                 # Create a temporary image for opencv to read it
                 input_image_gs.save('temp_for_cv2.jpg')
-                image = Image.open('temp_for_cv2.jpg', 0)
+                image = Image.open('temp_for_cv2.jpg')
                     
                 if os.path.exists('temp_for_cv2.jpg'):
                         # Delete the file
@@ -374,7 +374,7 @@ if tab_name == 'Inference':
         
         # Create a temporary image for opencv to read it
         input_image_gs.save('temp_for_cv2.jpg')
-        image = Image.open('temp_for_cv2.jpg', 0)
+        image = Image.open('temp_for_cv2.jpg')
                     
         if os.path.exists('temp_for_cv2.jpg'):
                 # Delete the file
