@@ -215,29 +215,29 @@ if tab_name == 'Create Neural net':
 
    
     
-    st.session_state.model = Sequential()
-    st.session_state.model.add(Conv2D(64,(kernel_size,kernel_size),input_shape=(28,28,4),activation=activation,padding='same'))
-    st.session_state.model.add(MaxPooling2D(pool_size=(pool_size,pool_size)))
-    st.session_state.model.add(Conv2D(64,(kernel_size,kernel_size),input_shape=(28,28,4),activation=activation,padding='same'))
-    st.session_state.model.add(MaxPooling2D(pool_size=(pool_size,pool_size)))
-    st.session_state.model.add(Dropout(dropout_rate))
-    st.session_state.model.add(Conv2D(128,(kernel_size,kernel_size),input_shape=(28,28,4),activation=activation,padding='same'))
-    st.session_state.model.add(MaxPooling2D(pool_size=(pool_size,pool_size)))
-    st.session_state.model.add(Dropout(dropout_rate+0.05))
-    st.session_state.model.add(Conv2D(128,(kernel_size,kernel_size),input_shape=(28,28,4),activation=activation,padding='same'))
-    st.session_state.model.add(MaxPooling2D(pool_size=(pool_size,pool_size)))
-    st.session_state.model.add(Dropout(dropout_rate+0.15))
-    st.session_state.model.add(Flatten())
-    st.session_state.model.add(Dense(256, activation=activation))
-    st.session_state.model.add(Dropout(dropout_rate+0.3))
-    st.session_state.model.add(Dense(3, activation='softmax'))
+    model = Sequential()
+    model.add(Conv2D(64,(kernel_size,kernel_size),input_shape=(28,28,4),activation=activation,padding='same'))
+    model.add(MaxPooling2D(pool_size=(pool_size,pool_size)))
+    model.add(Conv2D(64,(kernel_size,kernel_size),input_shape=(28,28,4),activation=activation,padding='same'))
+    model.add(MaxPooling2D(pool_size=(pool_size,pool_size)))
+    model.add(Dropout(dropout_rate))
+    model.add(Conv2D(128,(kernel_size,kernel_size),input_shape=(28,28,4),activation=activation,padding='same'))
+    model.add(MaxPooling2D(pool_size=(pool_size,pool_size)))
+    model.add(Dropout(dropout_rate+0.05))
+    model.add(Conv2D(128,(kernel_size,kernel_size),input_shape=(28,28,4),activation=activation,padding='same'))
+    model.add(MaxPooling2D(pool_size=(pool_size,pool_size)))
+    model.add(Dropout(dropout_rate+0.15))
+    model.add(Flatten())
+    model.add(Dense(256, activation=activation))
+    model.add(Dropout(dropout_rate+0.3))
+    model.add(Dense(3, activation='softmax'))
     
     # Create the CNN based on user input
     
     import visualkeras
 
 
-    layered_model=visualkeras.layered_view(st.session_state.model,legend=True, ) 
+    layered_model=visualkeras.layered_view(model) 
     
     st.header('Model 3d view')
     st.image(layered_model)
