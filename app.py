@@ -47,7 +47,7 @@ if tab_name == 'Home page':
 
 
 
-Network= torch.load(r'D:\assignment\vizura\model_torch_MNIST_CNN_99_1_streamlit.chk')
+Network= torch.load('model_torch_MNIST_CNN_99_1_streamlit.chk')
 
 
 
