@@ -19,7 +19,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras import regularizers, optimizers
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-
+from PIL import Image, ImageDraw
 # Define a dictionary to keep track of the selected tab
 if "selected_tab" not in st.session_state:
     print(st.session_state)
