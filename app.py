@@ -235,9 +235,9 @@ if tab_name == 'Create Neural net':
     # Create the CNN based on user input
     
     import visualkeras
-    from PIL import ImageFont
-    font = ImageFont.truetype("arial.ttf", 12)
-    layered_model=visualkeras.layered_view(st.session_state.model,legend=True, font=font) 
+
+
+    layered_model=visualkeras.layered_view(st.session_state.model,legend=True, ) 
     
     st.header('Model 3d view')
     st.image(layered_model)
@@ -277,7 +277,7 @@ if tab_name == 'Training':
     mnist_dim = X.shape[1]
     hidden_dim = int(mnist_dim/8)
     output_dim = len(np.unique(mnist.target))
-    print(all_classes)
+  
     if st.button('Train'):
         import torch
         from torch import nn
