@@ -1,0 +1,13 @@
+streamlit
+streamlit_drawable_canvas
+PIL
+torch
+numpy
+opencv-python
+matplotlib
+sklearn
+skorch
+tensorflow
+torchvision
+visualkeras
+Pillow
