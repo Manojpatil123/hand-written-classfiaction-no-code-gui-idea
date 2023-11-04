@@ -120,8 +120,9 @@ if tab_name == 'Prepare datset':
                 width, height = mask.shape
             #     print(ROI.shape)
             #     print(mask.shape)
-                x = width//2 - ROI.shape[0]//2 
-                y = height//2 - ROI.shape[1]//2 
+                x = (image.size[0] - roi_width) // 2
+  
+                y = (image.size[1] - roi_height) // 2 
             #     print(x,y)
                 mask[y:y+h, x:x+w] = ROI
             #     print(mask)
@@ -400,8 +401,9 @@ if tab_name == 'Inference':
         width, height = mask.shape
     #     print(ROI.shape)
     #     print(mask.shape)
-        x = width//2 - ROI.shape[0]//2 
-        y = height//2 - ROI.shape[1]//2 
+        x = (image.size[0] - roi_width) // 2
+  
+        y = (image.size[1] - roi_height) // 2 
     #     print(x,y)
         mask[y:y+h, x:x+w] = ROI
     #     print(mask)
