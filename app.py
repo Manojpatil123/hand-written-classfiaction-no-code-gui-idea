@@ -99,14 +99,18 @@ if tab_name == 'Prepare datset':
                 
                 # Create a temporary image for opencv to read it
                 input_image_gs.save('temp_for_cv2.jpg')
-                image = cv2.imread('temp_for_cv2.jpg', 0)
+                image = Image.open('temp_for_cv2.jpg', 0)
                     
                 if os.path.exists('temp_for_cv2.jpg'):
                         # Delete the file
                         os.remove('temp_for_cv2.jpg')
                 # Start creating a bounding box
-                height, width = image.shape
-                x,y,w,h = cv2.boundingRect(image)
+                width, height = image.size
+
+                # Create a drawing context
+                draw = ImageDraw.Draw(image)
+
+                x, y, w, h = (0, 0, width, height)
                 # Create new blank image and shift ROI to new coordinates
                 ROI = image[y:y+h, x:x+w]
                 mask = np.zeros([ROI.shape[0]+10,ROI.shape[1]+10])
@@ -370,13 +374,18 @@ if tab_name == 'Inference':
         
         # Create a temporary image for opencv to read it
         input_image_gs.save('temp_for_cv2.jpg')
-        image = cv2.imread('temp_for_cv2.jpg', 0)
+        image = Image.open('temp_for_cv2.jpg', 0)
+                    
         if os.path.exists('temp_for_cv2.jpg'):
-                        # Delete the file
-                        os.remove('temp_for_cv2.jpg')
+                # Delete the file
+                os.remove('temp_for_cv2.jpg')
         # Start creating a bounding box
-        height, width = image.shape
-        x,y,w,h = cv2.boundingRect(image)
+        width, height = image.size
+
+        # Create a drawing context
+        draw = ImageDraw.Draw(image)
+
+        x, y, w, h = (0, 0, width, height)
 
 
         # Create new blank image and shift ROI to new coordinates
