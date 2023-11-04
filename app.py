@@ -112,7 +112,7 @@ if tab_name == 'Prepare datset':
 
                 x, y, w, h = (0, 0, width, height)
                 # Create new blank image and shift ROI to new coordinates
-                ROI = image[y:y+h, x:x+w]
+                ROI = image.crop((x, y, x + w, y + h))
                 mask = np.zeros([ROI.shape[0]+10,ROI.shape[1]+10])
                 width, height = mask.shape
             #     print(ROI.shape)
@@ -389,7 +389,7 @@ if tab_name == 'Inference':
 
 
         # Create new blank image and shift ROI to new coordinates
-        ROI = image[y:y+h, x:x+w]
+        ROI = image.crop((x, y, x + w, y + h))
         mask = np.zeros([ROI.shape[0]+10,ROI.shape[1]+10])
         width, height = mask.shape
     #     print(ROI.shape)
