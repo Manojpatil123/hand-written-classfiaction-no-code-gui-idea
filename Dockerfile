@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone https://github.com/streamlit/streamlit-example.git .
 
-RUN apt-get update && apt-get install libgl1
+RUN apt-get update && apt-get install -y libgl1-mesa-glx
 
 RUN pip3 install -r requirements.txt
 
