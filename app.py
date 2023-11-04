@@ -265,13 +265,7 @@ if tab_name == 'Training':
     DATA_DIR = 'dataset'
   
     # Load all images 
-    all_images = []
-    for img in os.listdir(DATA_DIR):
-        img_array = plt.imread(os.path.join(DATA_DIR, img))
-        all_images.append(img_array)
-
-    # Extract class from each filename
-    all_classes = [img.split('_')[1] for img in os.listdir(DATA_DIR)]
+  
     from sklearn.datasets import fetch_openml
     from sklearn.model_selection import train_test_split
     import numpy as np
