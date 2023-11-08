@@ -507,15 +507,7 @@ if tab_name == 'Training':
     import matplotlib.pyplot as plt
     import numpy as np 
 
-    # Load images
-    X = np.load('mnist_images.npy')
-
-    # Load labels 
-    y = np.load('mnist_labels.npy', allow_pickle=True)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
-    mnist_dim = X.shape[1]
-    hidden_dim = int(mnist_dim/8)
-    output_dim = len(np.unique(y)) 
+     
 
     if st.button('Train'):
                 
