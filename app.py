@@ -485,7 +485,7 @@ if tab_name == 'Create Neural net':
     
     import visualkeras
     from PIL import ImageFont
-    layered_model=visualkeras.layered_view(model,legend=True) 
+    layered_model=visualkeras.layered_view(model) 
     
     st.header('Model 3d view')
     st.image(layered_model)
