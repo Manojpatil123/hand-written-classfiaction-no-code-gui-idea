@@ -261,7 +261,7 @@ if tab_name == 'Home page':
         st.image('https://open-instruction.com/loading/2021/05/e.png')
 
 
-Network= torch.load(r'D:\assignment\vizura\model_torch_MNIST_CNN_99_1_streamlit.chk')
+Network= torch.load('model_torch_MNIST_CNN_99_1_streamlit.chk')
 
 if 'uploading_way' not in st.session_state:
         st.session_state['uploading_way'] = None
