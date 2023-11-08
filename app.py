@@ -48,7 +48,7 @@ if tab_name == 'Home page':
     # Display the GIF
     def center_image(image_url):
     # Center-align the image using CSS
-    st.markdown(f'<div style="display: flex; justify-content: center;"><img src="{image_url}" /></div>', unsafe_allow_html=True)
+       st.markdown(f'<div style="display: flex; justify-content: center;"><img src="{image_url}" /></div>', unsafe_allow_html=True)
 
 # Usage
     gif_url = "https://i.makeagif.com/media/8-24-2018/P7zznD.gif"
