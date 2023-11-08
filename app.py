@@ -46,10 +46,14 @@ if tab_name == 'Home page':
 
     new_line()
     # Display the GIF
-    gif_url = "https://i.makeagif.com/media/8-24-2018/P7zznD.gif"
-    st.image(gif_url)
-    new_line()
+    def center_image(image_url):
+    # Center-align the image using CSS
+    st.markdown(f'<div style="display: flex; justify-content: center;"><img src="{image_url}" /></div>', unsafe_allow_html=True)
 
+# Usage
+    gif_url = "https://i.makeagif.com/media/8-24-2018/P7zznD.gif"
+    center_image(gif_url)
+    new_line()
     new_line()
     st.markdown("Welcome to Handwritten Digit Recognition! This tab is designed to help you understand the key concepts of Data Preparation and CNN architecture. Please select a topic below to get started.", unsafe_allow_html=True)
     new_line()
