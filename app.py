@@ -327,8 +327,8 @@ if tab_name == 'Prepare datset':
                 if canvas.image_data is not None:
                     # Get the numpy array (4-channel RGBA 100,100,4)
                         input_numpy_array = np.array(canvas.image_data)
-                        
-                        
+                
+                
                         # Get the RGBA PIL image
                         input_image = Image.fromarray(input_numpy_array.astype('uint8'), 'RGBA')                        
                         # Convert it to grayscale
@@ -339,22 +339,30 @@ if tab_name == 'Prepare datset':
                         
                         # Create a temporary image for opencv to read it
                         input_image_gs.save('temp_for_cv2.jpg')
-                        image = cv2.imread('temp_for_cv2.jpg', 0)
+                        image = Image.open('temp_for_cv2.jpg')
                             
                         if os.path.exists('temp_for_cv2.jpg'):
                                 # Delete the file
                                 os.remove('temp_for_cv2.jpg')
                         # Start creating a bounding box
-                        height, width = image.shape
-                        x,y,w,h = cv2.boundingRect(image)
+                        width, height = image.size
+        
+                        # Create a drawing context
+                        draw = ImageDraw.Draw(image)
+        
+                        x, y, w, h = (0, 0, width, height)
                         # Create new blank image and shift ROI to new coordinates
-                        ROI = image[y:y+h, x:x+w]
-                        mask = np.zeros([ROI.shape[0]+10,ROI.shape[1]+10])
+                        ROI = image.crop((x, y, x + w, y + h))
+                        roi_width, roi_height = ROI.size
+        
+                        # Create a mask of zeros with dimensions larger than the ROI
+                        mask = np.zeros([roi_height + 10, roi_width + 10])
                         width, height = mask.shape
                     #     print(ROI.shape)
                     #     print(mask.shape)
-                        x = width//2 - ROI.shape[0]//2 
-                        y = height//2 - ROI.shape[1]//2 
+                        x = (image.size[0] - roi_width) // 2
+          
+                        y = (image.size[1] - roi_height) // 2 
                     #     print(x,y)
                         mask[y:y+h, x:x+w] = ROI
                     #     print(mask)
@@ -365,7 +373,7 @@ if tab_name == 'Prepare datset':
                         # compressed_output_image = output_image.resize((22,22))
                         # Therefore, we use the following:
                         compressed_output_image = output_image.resize((22,22), Image.BILINEAR) # PIL.Image.NEAREST or PIL.Image.BILINEAR also performs good
-
+        
                         convert_tensor = torchvision.transforms.ToTensor()
                         tensor_image = convert_tensor(compressed_output_image)
                         # Another problem we face is that in the above ToTensor() command, we should have gotten a normalized tensor with pixel values in [0,1]
@@ -376,7 +384,7 @@ if tab_name == 'Prepare datset':
                         # Normalization shoudl be done after padding i guess
                         convert_tensor = torchvision.transforms.Normalize((0.1307), (0.3081)) # Mean and std of MNIST
                         tensor_image = convert_tensor(tensor_image)
-
+        
                         # The following gives noisy image because the values are from -1 to 1, which is not a proper image format
                         im = Image.fromarray(tensor_image.detach().cpu().numpy().reshape(28,28), mode='L')
                         #im.save("processed_tensor.png", "PNG")
@@ -395,9 +403,9 @@ if tab_name == 'Prepare datset':
                         else:
                             # Start from 1 if no existing images
                             count = 1
-
+        
                         plt.imsave(f"dataset/{selected_class}_{count}.png",tensor_image.detach().cpu().numpy().reshape(28,28), cmap='gray')
-
+        
                 else:
                         st.write('Please draw letters in canvas')
 
